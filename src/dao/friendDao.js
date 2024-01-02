@@ -1,5 +1,5 @@
 async function addFriend(connection, newFriendParams) {
-    const addFriendQuery = `INSERT INTO friend (user_id, nickname, relation) values (?, ?, ?);`;
+    const addFriendQuery = `INSERT INTO friend (user_id, nickname, relation, image) values (?, ?, ?, ?);`;
     return await connection.query(addFriendQuery, newFriendParams);
 }
 

@@ -10,7 +10,8 @@ exports.addNewFriend = async function (req, res) {
     const addNewFriendResult = await friendService.addFriend(
         req.user_id,
         nickname,
-        relation
+        relation,
+        image
     )
     
     return res.send(addNewFriendResult)
