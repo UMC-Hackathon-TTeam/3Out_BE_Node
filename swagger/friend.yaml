@@ -1,0 +1,153 @@
+paths:
+  # 친구 추가하기
+  /3out/home/add:
+    post:
+      security:
+        - jwt: [ ]
+      tags:
+        - Friend
+      summary: 친구 추가
+      parameters:
+        - name: addFriend
+          in: body
+          required: true
+          schema:
+            properties:
+              nickname:
+                type: string
+                description: 닉네임
+                example: dony
+              relation:
+                type: string
+                description: 나와 친구와의 관계
+                example: ISFJ 친구
+      responses:
+        '200':
+          description: 친구 추가 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"
+  /3out/home:
+    get:
+      security:
+        - jwt: [ ]
+      tags:
+        - Friend
+      summary: 홈 화면 (친구 목록 불러오기)
+      responses:
+        '200':
+          description: 친구 목록 불러오기 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+
+#특정 친구 정보 요청
+  /3out/home/{friendId}:
+    get:
+      security:
+        - jwt: [ ]
+      tags:
+        - Friend
+      summary: 특정 친구 정보 불러오기
+      parameters:
+        - name: friendId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 특정 친구 정보 불러오기 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+              result:
+                type: array
+                example: [
+                  {
+                    "nickname": "몰리",
+                    "relation": null
+                  },
+                  {
+                    "스티커 1번": 1,
+                    "스티커 2번": 3,
+                    "스티커 3번": 3,
+                    "스티커 4번": 2
+                  }
+                ]
+#감정 기록
+  /3out/home/{friendId}/records:
+    post:
+      security:
+        - jwt: [ ]
+      tags:
+        - Friend
+      summary: 특정 친구에게 감정 기록하기
+      parameters:
+        - name: friendId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: req
+          in: body
+          required: true
+          schema:
+            properties:
+              sticker_id:
+                type: integer
+                description: 스티커 식별자
+                example: 1
+              description:
+                type: string
+                description: 감정 상세 기록
+                example: im happy
+      responses:
+        '200':
+          description: 특정 친구에게 감정 기록하기 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="

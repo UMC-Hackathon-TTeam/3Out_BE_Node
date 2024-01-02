@@ -1,0 +1,132 @@
+paths:
+  # 경고 친구 조회
+  /3out/warnings:
+    get:
+      security:
+        - jwt: [ ]
+      tags:
+        - Warning
+      summary: 경고 친구 조회
+      responses:
+        '200':
+          description: 경고 친구 조회 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+              result:
+                type: array
+                example: [
+                  {
+                    "id": 4,
+                    "nickname": "dony",
+                    "ratio": "0.8333"
+                  },
+                  {
+                    "id": 4,
+                    "nickname": "dony",
+                    "ratio": "0.8333"
+                  }
+                ]
+
+  # 경고 친구 리스트
+  /3out/warnings/detail:
+    get:
+      security:
+        - jwt: [ ]
+      tags:
+        - Warning
+      summary: 경고 친구 리스트 보기
+      parameters:
+        - name: friend_id
+          in: query
+          required: true
+          schema:
+            properties:
+              friend_id:
+                type: int
+                description: 친구 식별자
+                example: 4
+      responses:
+        '200':
+          description: 경고 친구 리스트 불러오기 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+              result:
+                type: json
+                example: {
+                  "id": 4,
+                  "nickname": "dony",
+                  "relation": "ISFJ 친구",
+                  "ratio": "0.8333",
+                  "sticker3": "2",
+                  "sticker4": "3"
+                }
+
+  # 경고 친구 코멘트 작성
+  /3out/warnings/comment:
+    post:
+      security:
+        - jwt: [ ]
+      tags:
+        - Warning
+      summary: 경고 친구 코멘트 작성
+      parameters:
+        - name: warningComment
+          in: body
+          required: true
+          schema:
+            properties:
+              friend_id:
+                type: int
+                description: 친구 식별자
+                example: 2
+              p_comment:
+                type: string
+                description: 경고 친구 긍정 코멘트
+                example: 그래도 좋은 친구야
+              if_comment:
+                type: string
+                description: 경고 친구 고민 코멘트
+                example: 한달동안 나를 이렇게 스트레스 받게 하다니!
+
+      responses:
+        '200':
+          description: 경고 친구 코멘트 작성 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="

@@ -1,0 +1,42 @@
+#스티커별 기록 내용 가져오기
+paths:
+  /3out/record:
+    get:
+      security:
+        - jwt: [ ]
+      tags:
+        - Record
+      summary: 스티커별 기록 내용 가져오기
+      parameters:
+        - name: friendId
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: stickerId
+          in: query
+          required: true
+          schema:
+          type: integer
+      responses:
+        '200':
+          description: 특정 친구에게 감정 가져오기 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="

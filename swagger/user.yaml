@@ -1,0 +1,191 @@
+#회원가입
+paths:
+  /3out/signup:
+    post:
+      tags:
+        - User
+      summary: 회원가입
+      parameters:
+        - name: signUp
+          in: body
+          required: true
+          schema:
+            properties:
+              email:
+                type: string
+                description: 이메일
+                example: umc5th@gmail.com
+              password:
+                type: string
+                description: 비밀번호(영문+숫자)
+                example: password
+              nickname:
+                type: string
+                description: 닉네임
+                example: umc
+              promise:
+                type: string
+                description: 나의 다짐
+                example: 상냥한 친구가 되겠다.
+      responses:
+        '200':
+          description: 회원 가입 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+
+#로그인
+  /3out/signin:
+    post:
+      tags:
+        - User
+      summary: 로그인
+      parameters:
+        - name: signIn
+          in: body
+          required: true
+          schema:
+            properties:
+              email:
+                type: string
+                description: 이메일
+                example: umc5th@gmail.com
+              password:
+                type: string
+                description: 비밀번호(영문+숫자)
+                example: password
+      responses:
+        '200':
+          description: 로그인 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+              result:
+                type: object
+                example: {
+                  "nickname": "umc",
+                  "accessToken": "asdgads.adgad.dsgads",
+                  "refreshToken": "asdfad.asdsfa.dfadf"
+                }
+
+  # 유저 프로필 조회
+  /3out/home/profile:
+    get:
+      tags:
+        - Friend
+      summary: 유저 프로필 조회
+      responses:
+        '200':
+          description: 유저 프로필 조회 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"
+
+#rtk 재발급
+  /3out/refresh:
+    post:
+      security:
+        - jwt: []
+      tags:
+        - User
+      summary: rtk 재발급
+      parameters:
+        - name: refresh
+          in: body
+          required: true
+          schema:
+            properties:
+              accessToken:
+                type: jwt
+                description: accessToken
+                example: qraerae.asfaef.asefae
+              refreshToken:
+                type: jwt
+                description: refreshToken
+                example: sfasdfa.adsfasdf.adsfadsf
+      responses:
+        '200':
+          description: rtk 재발급 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"
+              result:
+                type: object
+                example: {
+                  "accessToken": "asdgads.adgad.dsgads",
+                  "refreshToken": "asdfad.asdsfa.dfadf"
+                }
+
+  #프로필
+  /3out/profile:
+    get:
+      security:
+        - jwt: [ ]
+      tags:
+        - Profile
+      summary: 유저 프로필 조회
+      responses:
+        '200':
+          description: 유저 프로필 조회 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+              result:
+                type: object
+                example: {
+                  "nickname": "umc",
+                  "promise": "상냥한 친구가 되겠다."
+                }
+
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="

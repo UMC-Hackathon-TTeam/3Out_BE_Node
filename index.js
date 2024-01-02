@@ -1,7 +1,7 @@
-const express = require('./config/express');
-const port = 3000;
-const app = express();
+const express = require('./config/express')
+const port = 8080
+const app = express()
 
 app.listen(port, () => {
-    console.log('Server is running on HTTP at port', port);
-});
+    console.log('Server is running on HTTP at port', port)
+})
