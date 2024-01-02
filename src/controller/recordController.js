@@ -3,15 +3,12 @@ const baseResponse = require("../../config/baseResponseStatus");
 const recordPRO = require("../provider/recordProvider");
 
 exports.getRecordsBySticker = async function (req, res) {
-    const {query} = req;
-    const user_id = query.userId;
-    const friend_id = query.friendId;
-    const sticker_id = query.stickerId;
+    const {friendId, stickerId} = req.query;
 
     console.log("스티커별 내용 조회 요청");
 
-    const getRecordsByStickerResult = await recordPRO.getRecordsBySticker(user_id, friend_id, sticker_id);
-
+    const getRecordsByStickerResult = await recordPRO.getRecordsBySticker(req.user_id, friendId, stickerId);
+    console.log(getRecordsByStickerResult);
     const formattedResults = getRecordsByStickerResult.map(record => ({
         description: record.description,
         created_at: record.created_at.toLocaleDateString('en-US', { 

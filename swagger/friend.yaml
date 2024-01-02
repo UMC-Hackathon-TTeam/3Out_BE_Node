@@ -2,6 +2,8 @@ paths:
   # 친구 추가하기
   /3out/home/add:
     post:
+      security:
+        - BearerAuth: [ ]
       tags:
         - Friend
       summary: 친구 추가
@@ -40,17 +42,11 @@ paths:
                 example: "success"
   /3out/home:
     get:
+      security:
+        - BearerAuth: [ ]
       tags:
         - Friend
       summary: 홈 화면 (친구 목록 불러오기)
-      parameters:
-        - name: userId
-          in: query
-          required: true
-          schema:
-            type: integer
-      security:
-        - api_key: []
       responses:
         '200':
           description: 친구 목록 불러오기 성공
@@ -65,22 +61,19 @@ paths:
                 example: 200
               message:
                 type: string
-                example: "success"
+                example: "성공"
 
 #특정 친구 정보 요청
   /3out/home/{friendId}:
     get:
+      security:
+        - BearerAuth: []
       tags:
         - Friend
       summary: 특정 친구 정보 불러오기
       parameters:
         - name: friendId
           in: path
-          required: true
-          schema:
-            type: integer
-        - name: userId
-          in: query
           required: true
           schema:
             type: integer
@@ -98,10 +91,26 @@ paths:
                 example: 200
               message:
                 type: string
-                example: "success"
+                example: "성공"
+              result:
+                type: array
+                example: [
+                  {
+                    "nickname": "몰리",
+                    "relation": null
+                  },
+                  {
+                    "스티커 1번": 1,
+                    "스티커 2번": 3,
+                    "스티커 3번": 3,
+                    "스티커 4번": 2
+                  }
+                ]
 #감정 기록
   /3out/home/{friendId}/records:
     post:
+      security:
+        - BearerAuth: [ ]
       tags:
         - Friend
       summary: 특정 친구에게 감정 기록하기
@@ -116,10 +125,6 @@ paths:
           required: true
           schema:
             properties:
-              user_id:
-                type: integer
-                description: 유저 식별자
-                example: 1
               sticker_id:
                 type: integer
                 description: 스티커 식별자
@@ -142,4 +147,4 @@ paths:
                 example: 200
               message:
                 type: string
-                example: "success"
+                example: "성공"
