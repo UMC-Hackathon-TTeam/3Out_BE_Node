@@ -1,14 +1,35 @@
 async function insertNewUser(connection, newUserParams) {
-    const insertNewUserQuery = `insert into user (login_id, password, email, name, nickname, promise) values (?, ?, ?, ?, ?, ?);`;
+    const insertNewUserQuery = `insert into user (email, password, name, nickname, promise) values (?, ?, ?, ?, ?);`;
     return await connection.query(insertNewUserQuery, newUserParams);
 }
 
-async function findUserByIdPwd(connection, loginId, password) {
-    const findUserQuery = `select id, nickname from user where login_id = ? and password = ?;`;
-    return await connection.query(findUserQuery, [loginId, password]);
+async function findUserByIdPwd(connection, email) {
+    const findUserQuery = `SELECT id, nickname, password FROM user WHERE email = ?;`;
+    const userRow = await connection.query(findUserQuery, email);
+    return userRow[0];
+}
+
+async function updateRefreshToken(connection, id, refreshToken) {
+    const updateRefreshTokenQuery = `update user set refresh_token = ? where id = ?;`;
+    return await connection.query(updateRefreshTokenQuery, [refreshToken, id]);
+}
+
+async function findUserById(connection, userId) {
+    const findUserQuery = `select id, nickname from user where id = ?;`;
+    const userRow = await connection.query(findUserQuery, userId);
+    return userRow[0];
+}
+
+async function findRefreshTokenById(connection, userId) {
+    const findUserQuery = `select refresh_token from user where id = ?;`;
+    const userRow = await connection.query(findUserQuery, userId);
+    return userRow[0];
 }
 
 module.exports = {
     insertNewUser,
     findUserByIdPwd,
+    updateRefreshToken,
+    findUserById,
+    findRefreshTokenById,
 };

@@ -5,6 +5,7 @@ module.exports = {
 
     //Request error
     USER_NOT_EXIST : { "isSuccess": false, "code": 400, "message": "해당 유저가 존재하지 않습니다." },
+    PASSWORD_WRONG : { "isSuccess": false, "code": 400, "message": "비밀번호가 틀렸습니다." },
     USER_NOT_LOGGED_IN : { "isSuccess": false, "code": 403, "message": "로그인 필요"},
     USER_IS_LOGGED_IN : { "isSuccess": false, "code": 403, "message": "로그인 된 상태입니다."},
     USER_UNAUTHORIZED : { "isSuccess": false, "code": 401, "message": "인증되지 않았습니다."},

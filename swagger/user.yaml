@@ -1,3 +1,9 @@
+securityDefinitions:
+  BearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+
 #회원가입
 paths:
   /3out/signup:
@@ -11,18 +17,14 @@ paths:
           required: true
           schema:
             properties:
-              login_id:
-                type: string
-                description: 아이디
-                example: umc5th
-              password:
-                type: string
-                description: 비밀번호(영문+숫자)
-                example: password
               email:
                 type: string
                 description: 이메일
                 example: umc5th@gmail.com
+              password:
+                type: string
+                description: 비밀번호(영문+숫자)
+                example: password
               name:
                 type: string
                 description: 이름
@@ -63,10 +65,10 @@ paths:
           required: true
           schema:
             properties:
-              login_id:
+              email:
                 type: string
-                description: 아이디
-                example: umc5th
+                description: 이메일
+                example: umc5th@gmail.com
               password:
                 type: string
                 description: 비밀번호(영문+숫자)
@@ -97,6 +99,8 @@ paths:
 #rtk 재발급
   /3out/refresh:
     post:
+      security:
+        - BearerAuth: []
       tags:
         - User
       summary: rtk 재발급

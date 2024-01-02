@@ -3,11 +3,11 @@ const userDao = require("../dao/userDao");
 const baseResponse = require("../../config/baseResponseStatus");
 const {response, errResponse} = require("../../config/response");
 
-exports.insertNewUser = async function (login_id, password, email, name, nickname, promise) {
+exports.insertNewUser = async function (email, password, name, nickname, promise) {
     try {
         const connection = await pool.getConnection(async (conn) => conn);
 
-        const newUserParams = [login_id, password, email, name, nickname, promise];
+        const newUserParams = [email, password, name, nickname, promise];
         const insertNewUserResult = await userDao.insertNewUser(connection, newUserParams);
         console.log(insertNewUserResult);
         connection.release();
@@ -19,21 +19,31 @@ exports.insertNewUser = async function (login_id, password, email, name, nicknam
     }
 };
 
-exports.login = async function (login_id, password) {
+exports.login = async function (email) {
     try {
         const connection = await pool.getConnection(async (conn) => conn);
 
-        const loginResult = await userDao.findUserByIdPwd(connection, login_id, password);
-        console.log(loginResult);
+        const loginResult = await userDao.findUserByIdPwd(connection, email);
         connection.release();
 
-        if (loginResult) {
-            return loginResult[0];
-        } else {
-            return null;
-        }
+        return loginResult[0];
     } catch (err) {
         console.log(`App - login Service error\n: ${err.message}`);
         return errResponse(baseResponse.DB_ERROR);
     }
 };
+
+exports.updateRefreshToken = async function (id, refreshToken) {
+    try {
+        const connection = await pool.getConnection(async (conn) => conn);
+
+        const updateRefreshTokenResult = await userDao.updateRefreshToken(connection, id, refreshToken);
+        console.log(updateRefreshTokenResult);
+        connection.release();
+
+        return response(baseResponse.SUCCESS);
+    } catch (err) {
+        console.log(`App - update refrestToken error\n: ${err.message}`);
+        return errResponse(baseResponse.DB_ERROR);
+    }
+}
