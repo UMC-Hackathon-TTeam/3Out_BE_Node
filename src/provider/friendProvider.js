@@ -34,7 +34,7 @@ exports.getFriendInfo = async function (user_id, friend_id) {
         const getStickerNum3 = await friendDAO.getStickerNum(connection, params3);
         const getStickerNum4 = await friendDAO.getStickerNum(connection, params4);
         connection.release();
-        const totalNum = {"스티커 1번":getStickerNum1[0][0].sticker_count, "스티커 2번":getStickerNum2[0][0].sticker_count, "스티커 3번":getStickerNum3[0][0].sticker_count, "스티커 4번":getStickerNum4[0][0].sticker_count};
+        const totalNum = {"감동":getStickerNum1[0][0].sticker_count, "신남":getStickerNum2[0][0].sticker_count, "경고":getStickerNum3[0][0].sticker_count, "서운함":getStickerNum4[0][0].sticker_count};
         const formatResult = [getFriendInfoResult[0][0], totalNum];
         console.log(formatResult);
 
