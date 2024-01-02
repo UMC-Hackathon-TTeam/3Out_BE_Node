@@ -1,5 +1,5 @@
 const express = require('./config/express');
-const port = 3000;
+const port = 8080;
 const app = express();
 
 app.listen(port, () => {

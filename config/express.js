@@ -43,6 +43,8 @@ module.exports = function () {
         res.send('Hi 3Out');
     });
 
+    require('../src/route/recordRoute')(app);
+    require('../src/route/friendRoute')(app);
     require('../src/route/testRoute')(app);
 
     return app;
