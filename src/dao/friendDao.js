@@ -9,7 +9,7 @@ async function getFriendsList(connection, id) {
 }
 
 async function getFriendInfo(connection, params) {
-    const getFriendInfoSQL = `SELECT nickname, relation FROM friend WHERE user_id = ? AND id = ?;`;
+    const getFriendInfoSQL = `SELECT nickname, relation, image FROM friend WHERE user_id = ? AND id = ?;`;
     return await connection.query(getFriendInfoSQL, params);
 }
 
