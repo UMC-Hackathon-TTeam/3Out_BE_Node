@@ -1,0 +1,29 @@
+paths:
+  # 경고 친구 조회
+  /3out/warning:
+    get:
+      tags:
+        - Warning
+      summary: 경고 친구 조회
+      parameters:
+        - name: warning
+          in: body
+          required: true
+          schema:
+            properties:
+
+      responses:
+        '200':
+          description: 경고 친구 조회 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"
