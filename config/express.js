@@ -44,6 +44,7 @@ module.exports = function () {
     });
 
     require('../src/route/testRoute')(app);
+    require('../src/route/userRoute')(app);
 
     return app;
 };
