@@ -53,7 +53,7 @@ exports.refresh = async function (req, res) {
 
 exports.getProfile = async function (req, res) {
     try {
-        const getProfileResult = await profileProvider.getProfile(req.user_id)
+        const getProfileResult = await userProvider.getProfile(req.user_id)
         return res.send(response(baseResponse.SUCCESS, getProfileResult))
     } catch (error) {
         return res.send(errResponse(baseResponse.DB_ERROR))

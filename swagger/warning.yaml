@@ -3,7 +3,7 @@ paths:
   /3out/warnings:
     get:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Warning
       summary: 경고 친구 조회
@@ -41,7 +41,7 @@ paths:
   /3out/warnings/detail:
     get:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Warning
       summary: 경고 친구 리스트 보기
@@ -85,7 +85,7 @@ paths:
   /3out/warnings/comment:
     post:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Warning
       summary: 경고 친구 코멘트 작성

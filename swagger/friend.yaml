@@ -3,7 +3,7 @@ paths:
   /3out/home/add:
     post:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Friend
       summary: 친구 추가
@@ -39,7 +39,7 @@ paths:
   /3out/home:
     get:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Friend
       summary: 홈 화면 (친구 목록 불러오기)
@@ -63,7 +63,7 @@ paths:
   /3out/home/{friendId}:
     get:
       security:
-        - BearerAuth: []
+        - jwt: [ ]
       tags:
         - Friend
       summary: 특정 친구 정보 불러오기
@@ -106,7 +106,7 @@ paths:
   /3out/home/{friendId}/records:
     post:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Friend
       summary: 특정 친구에게 감정 기록하기
@@ -144,3 +144,10 @@ paths:
               message:
                 type: string
                 example: "성공"
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="

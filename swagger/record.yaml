@@ -3,7 +3,7 @@ paths:
   /3out/record:
     get:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Record
       summary: 스티커별 기록 내용 가져오기
@@ -33,3 +33,10 @@ paths:
               message:
                 type: string
                 example: "성공"
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="
