@@ -59,6 +59,7 @@ module.exports = function () {
     require('../src/route/friendRoute')(app);
     require('../src/route/testRoute')(app);
     require('../src/route/userRoute')(app);
+    require('../src/route/warningRoute')(app);
 
     // 404 에러 핸들러
     app.use((req, res, next) => {
