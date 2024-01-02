@@ -7,7 +7,7 @@ async function getWarningFriendList(connection, userId) {
       FROM (
              SELECT friend_id, (SUM(CASE WHEN sticker_id = 4 OR sticker_id = 3 THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS ratio
              FROM friend_sticker
-             WHERE user_id = 4
+             WHERE user_id = ?
              GROUP BY friend_id
            ) AS subquery
       WHERE ratio >= 0.6
