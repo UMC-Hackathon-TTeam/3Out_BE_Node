@@ -3,4 +3,7 @@ const friendController = require('../controller/friendController')
 
 module.exports = function (app) {
     app.post('/3out/home/add', authChecker, friendController.addNewFriend);
+    app.get('/3out/home', authChecker, friendController.getFriendsInfo);
+    app.get('/3out/home/:friendId', authChecker, friendController.getFriendInfo);
+    app.post('/3out/home/:friendId/records', authChecker, friendController.insertRecordToFriend);
 }
