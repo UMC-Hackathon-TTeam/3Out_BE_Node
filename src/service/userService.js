@@ -3,11 +3,11 @@ const userDao = require("../dao/userDao");
 const baseResponse = require("../../config/baseResponseStatus");
 const {response, errResponse} = require("../../config/response");
 
-exports.insertNewUser = async function (email, password, name, nickname, promise) {
+exports.insertNewUser = async function (email, password, nickname, promise) {
     try {
         const connection = await pool.getConnection(async (conn) => conn);
 
-        const newUserParams = [email, password, name, nickname, promise];
+        const newUserParams = [email, password, nickname, promise];
         const insertNewUserResult = await userDao.insertNewUser(connection, newUserParams);
         console.log(insertNewUserResult);
         connection.release();
