@@ -18,11 +18,11 @@ exports.getWarningFriendList = async function () {
   }
 }
 
-exports.addWarningComment = async function (friend_id, comment) {
+exports.addWarningComment = async function (friend_id, p_comment, if_comment) {
   try {
     const connection = await pool.getConnection(async (conn) => conn)
 
-    const warningCommentParams = [friend_id, comment]
+    const warningCommentParams = [friend_id, p_comment, if_comment]
     const addWarningCommentResult = await warningDao.addWarningComment(
       connection,
       warningCommentParams

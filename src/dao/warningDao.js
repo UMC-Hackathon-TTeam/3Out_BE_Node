@@ -12,7 +12,7 @@ async function getWarningFriendList(connection) {
 }
 
 async function addWarningComment(connection, warningCommentParams) {
-  const addWarningCommentQuery = `INSERT INTO WARNING (friend_id, comment) values (?, ?)`
+  const addWarningCommentQuery = `INSERT INTO WARNING (friend_id, p_comment, if_comment) values (?, ?, ?)`
   return await connection.query(addWarningCommentQuery, warningCommentParams)
 }
 

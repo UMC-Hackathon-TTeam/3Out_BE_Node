@@ -12,10 +12,10 @@ exports.warningFriendList = async function (req, res) {
 }
 
 exports.warningFriendComment = async function (req, res) {
-  const { comment } = req.body
+  const { p_comment, if_comment } = req.body
 
   try {
-    const warningCommentResult = await warningService.addWarningComment(comment)
+    const warningCommentResult = await warningService.addWarningComment(p_comment, if_comment)
     return res.send(response(baseResponse.SUCCESS, warningCommentResult))
   } catch (error) {
     return res.send(errResponse(baseResponse.DB_ERROR))
