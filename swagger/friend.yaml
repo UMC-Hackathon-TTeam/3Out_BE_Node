@@ -21,6 +21,10 @@ paths:
                 type: string
                 description: 나와 친구와의 관계
                 example: ISFJ 친구
+              image:
+                type: string
+                description: 프로필 사진
+                example: example.jpg
       responses:
         '200':
           description: 친구 추가 성공
@@ -58,6 +62,16 @@ paths:
               message:
                 type: string
                 example: "성공"
+              result:
+                type: array
+                example: [
+                  {
+                    "id": 1,
+                    "nickname": "클레어",
+                    "relation": null,
+                    "image": "testimage"
+                  }
+                ]
 
 #특정 친구 정보 요청
   /3out/home/{friendId}:
@@ -93,13 +107,14 @@ paths:
                 example: [
                   {
                     "nickname": "몰리",
-                    "relation": null
+                    "relation": null,
+                    "image": "example.jpg"
                   },
                   {
-                    "스티커 1번": 1,
-                    "스티커 2번": 3,
-                    "스티커 3번": 3,
-                    "스티커 4번": 2
+                    "감동": 1,
+                    "신남": 3,
+                    "경고": 3,
+                    "서운함": 2
                   }
                 ]
 #감정 기록

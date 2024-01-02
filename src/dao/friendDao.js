@@ -1,10 +1,10 @@
 async function addFriend(connection, newFriendParams) {
-    const addFriendQuery = `INSERT INTO friend (user_id, nickname, relation) values (?, ?, ?);`;
+    const addFriendQuery = `INSERT INTO friend (user_id, nickname, relation, image) values (?, ?, ?, ?);`;
     return await connection.query(addFriendQuery, newFriendParams);
 }
 
 async function getFriendsList(connection, id) {
-    const getFriendsInfoSQL = `SELECT id, nickname, relation FROM friend WHERE user_id = ?;`;
+    const getFriendsInfoSQL = `SELECT id, nickname, relation, image FROM friend WHERE user_id = ?;`;
     return await connection.query(getFriendsInfoSQL, id);
 }
 

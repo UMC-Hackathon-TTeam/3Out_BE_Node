@@ -5,7 +5,7 @@ async function getWarningFriendList(connection, userId) {
            JOIN (
       SELECT friend_id, ratio
       FROM (
-             SELECT friend_id, SUM(CASE WHEN sticker_id = 4 OR sticker_id = 3 THEN 1 ELSE 0 END) / COUNT(*) AS ratio
+             SELECT friend_id, (SUM(CASE WHEN sticker_id = 4 OR sticker_id = 3 THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS ratio
              FROM friend_sticker
              WHERE user_id = 4
              GROUP BY friend_id
@@ -28,7 +28,7 @@ async function findFriendDetail(connection, params) {
     JOIN (
       SELECT friend_id, ratio, sticker3, sticker4
       FROM (
-             SELECT friend_id, SUM(CASE WHEN sticker_id = 4 OR sticker_id = 3 THEN 1 ELSE 0 END) / COUNT(*) AS ratio, SUM(CASE WHEN sticker_id = 4 THEN 1 ELSE 0 END) AS sticker4,  SUM(CASE WHEN sticker_id = 3 THEN 1 ELSE 0 END) AS sticker3
+             SELECT friend_id, (SUM(CASE WHEN sticker_id = 4 OR sticker_id = 3 THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS ratio, SUM(CASE WHEN sticker_id = 4 THEN 1 ELSE 0 END) AS sticker4,  SUM(CASE WHEN sticker_id = 3 THEN 1 ELSE 0 END) AS sticker3
              FROM friend_sticker
              WHERE user_id = ? and friend_id = ?
            ) AS subquery
