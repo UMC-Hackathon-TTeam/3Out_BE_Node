@@ -1,0 +1,38 @@
+#스티커별 기록 내용 가져오기
+paths:
+  /3out/home/{friendId}/{stickerId}:
+    get:
+      tags:
+        - Record
+      summary: 스티커별 기록 내용 가져오기
+      parameters:
+        - name: friendId
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: stickerId
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 특정 친구에게 감정 기록하기 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"

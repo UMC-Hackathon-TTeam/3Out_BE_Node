@@ -6,12 +6,12 @@ const userService = require("../service/userService");
 const userProvider = require("../provider/userProvider");
 
 exports.signUp = async function (req, res) {
-    const {email, password, name, nickname, promise} = req.body;
+    const {email, password, nickname, promise} = req.body;
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
-    const signUpResult = await userService.insertNewUser(email, hash, name, nickname, promise);
+    const signUpResult = await userService.insertNewUser(email, hash, nickname, promise);
 
     return res.send(signUpResult);
 };

@@ -1,5 +1,5 @@
 async function insertNewUser(connection, newUserParams) {
-    const insertNewUserQuery = `insert into user (email, password, name, nickname, promise) values (?, ?, ?, ?, ?);`;
+    const insertNewUserQuery = `insert into user (email, password, nickname, promise) values (?, ?, ?, ?);`;
     return await connection.query(insertNewUserQuery, newUserParams);
 }
 
