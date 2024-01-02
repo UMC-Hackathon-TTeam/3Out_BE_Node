@@ -22,6 +22,42 @@ paths:
               message:
                 type: string
                 example: "success"
+              result:
+                type: object
+                example: {
+                  "touchingRankings": [
+                    {
+                      "friend_id": 1,
+                      "image": "testimage",
+                      "nickname": "클레어",
+                      "sticker_count": 1
+                    }
+                  ],
+                  "happyRankings": [
+                    {
+                      "friend_id": 1,
+                      "image": "testimage",
+                      "nickname": "클레어",
+                      "sticker_count": 2
+                    }
+                  ],
+                  "sadRankings": [
+                    {
+                      "friend_id": 4,
+                      "image": null,
+                      "nickname": "dony",
+                      "sticker_count": 2
+                    }
+                  ],
+                  "disappointingRankings": [
+                    {
+                      "friend_id": 4,
+                      "image": null,
+                      "nickname": "dony",
+                      "sticker_count": 2
+                    }
+                  ]
+                }
 securityDefinitions:
   jwt:
     type: apiKey

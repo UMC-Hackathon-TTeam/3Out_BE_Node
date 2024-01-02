@@ -3,11 +3,11 @@ const friendDao = require('../dao/friendDao')
 const baseResponse = require('../../config/baseResponseStatus')
 const { response, errResponse } = require('../../config/response')
 
-exports.addFriend = async function (userId, nickname, relation ) {
+exports.addFriend = async function (userId, nickname, relation, image ) {
   try {
     const connection = await pool.getConnection(async (conn) => conn)
 
-    const newFriendParams = [userId, nickname, relation ]
+    const newFriendParams = [userId, nickname, relation, image ]
     const addFriendResult = await friendDao.addFriend(
       connection,
       newFriendParams
