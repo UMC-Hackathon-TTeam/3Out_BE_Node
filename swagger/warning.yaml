@@ -26,11 +26,13 @@ paths:
                 type: array
                 example: [
                   {
+                    "image": "example.jpg"
                     "id": 4,
                     "nickname": "dony",
                     "ratio": "0.8333"
                   },
                   {
+                    "image": "example.jpg"
                     "id": 4,
                     "nickname": "dony",
                     "ratio": "0.8333"
@@ -73,6 +75,7 @@ paths:
               result:
                 type: json
                 example: {
+                  "image": "example.jpg"
                   "id": 4,
                   "nickname": "dony",
                   "relation": "ISFJ 친구",
