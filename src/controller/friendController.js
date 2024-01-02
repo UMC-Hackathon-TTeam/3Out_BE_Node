@@ -6,6 +6,7 @@ exports.addNewFriend = async function (req, res) {
     const { nickname, relation, favor } = req.body
 
     const addNewFriendResult = await friendService.addFriend(
+        req.user_id,
         nickname,
         relation,
         favor
