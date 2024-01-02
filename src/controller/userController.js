@@ -31,8 +31,6 @@ exports.signIn = async function (req, res) {
     } else {
         if (signInResult === null)
             return res.send(errResponse(baseResponse.USER_NOT_EXIST));
-        else if (hash !== signInResult.password)
-            return res.send(errResponse(baseResponse.PASSWORD_WRONG));
     }
 };
 
