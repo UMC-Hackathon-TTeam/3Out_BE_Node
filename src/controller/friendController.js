@@ -16,38 +16,34 @@ exports.addNewFriend = async function (req, res) {
     return res.send(addNewFriendResult)
 }
 
-exports.getFriendsInfo = async function (req, res) {
-    const {query} = req;
-
-    const id = query.userId;
+exports.getFriendsList = async function (req, res) {
+    const userId = req.user_id;
     console.log("친구 목록 요청");
 
-    const getFreindsInfoResult = await friendPRO.getFriendsInfo(id);
+    const getFreindsInfoResult = await friendPRO.getFriendsList(userId);
     
     return res.send(response(baseResponse.SUCCESS, getFreindsInfoResult));
 }
 
 exports.getFriendInfo = async function (req, res) {
-    const {query} = req;
     const friend_id = req.params.friendId;
-    const id = query.userId;
 
     console.log("특정 친구 정보 요청");
 
-    const getFreindInfoResult = await friendPRO.getFriendInfo(id, friend_id);
+    const getFreindInfoResult = await friendPRO.getFriendInfo(req.user_id, friend_id);
 
     return res.send(response(baseResponse.SUCCESS, getFreindInfoResult))
 }
 
 exports.insertRecordToFriend = async function (req, res) {
-    const {user_id, sticker_id, description} = req.body;
+    const {sticker_id, description} = req.body;
     const friend_id = req.params.friendId;
 
-    const params = [user_id, friend_id, sticker_id, description];
+    const params = [req.user_id, friend_id, sticker_id, description];
     console.log(params);
     console.log("기록 추가 요청");
 
-    const insertRecordToFriendResult = await friendService.insertRecordToFriend(user_id, friend_id, sticker_id, description);
+    const insertRecordToFriendResult = await friendService.insertRecordToFriend(req.user_id, friend_id, sticker_id, description);
 
     return res.send(insertRecordToFriendResult);
 }

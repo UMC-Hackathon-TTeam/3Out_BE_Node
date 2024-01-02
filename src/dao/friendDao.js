@@ -3,7 +3,7 @@ async function addFriend(connection, newFriendParams) {
     return await connection.query(addFriendQuery, newFriendParams);
 }
 
-async function getFriendsInfo(connection, id) {
+async function getFriendsList(connection, id) {
     const getFriendsInfoSQL = `SELECT nickname, relation FROM friend WHERE user_id = ?;`;
     return await connection.query(getFriendsInfoSQL, id);
 }
@@ -33,5 +33,5 @@ async function insertFriendSticker(connection, paramsForSticker) {
 }
 
 module.exports = {
-    addFriend, getFriendsInfo, getFriendInfo, insertRecordToFriend, insertFriendSticker, getStickerNum
+    addFriend, getFriendsList, getFriendInfo, insertRecordToFriend, insertFriendSticker, getStickerNum
 };
