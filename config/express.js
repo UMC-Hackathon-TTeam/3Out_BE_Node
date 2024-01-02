@@ -2,8 +2,11 @@ const express = require('express');
 const compression = require('compression');
 const methodOverride = require('method-override');
 const cors = require('cors');
+const { specs } = require('./swagger.config');
+const SwaggerUi = require('swagger-ui-express');
 
 module.exports = function () {
+
     const app = express();
 
     //passportConfig(app);
@@ -17,6 +20,8 @@ module.exports = function () {
     app.use(methodOverride());
 
     app.use(cors());
+
+    app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
     /*    app.use(cookieParser())
 
