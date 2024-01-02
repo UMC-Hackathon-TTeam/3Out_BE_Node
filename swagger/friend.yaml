@@ -1,0 +1,40 @@
+paths:
+  # 친구 추가하기
+  /3out/home/add:
+    post:
+      tags:
+        - Friend
+      summary: 친구 추가
+      parameters:
+        - name: addFriend
+          in: body
+          required: true
+          schema:
+            properties:
+              nickname:
+                type: string
+                description: 닉네임
+                example: dony
+              relation:
+                type: string
+                description: 나와 친구와의 관계
+                example: ISFJ 친구
+              favor:
+                type: int
+                description: 친밀도
+                example: 80
+      responses:
+        '200':
+          description: 친구 추가 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"

@@ -56,6 +56,7 @@ module.exports = function () {
     // 라우트 설정
     require('../src/route/testRoute')(app)
     require('../src/route/rankingRoute')(app)
+    require('../src/route/friendRoute')(app)
 
     // 404 에러 핸들러
     app.use((req, res, next) => {

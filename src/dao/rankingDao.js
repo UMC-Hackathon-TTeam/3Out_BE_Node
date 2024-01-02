@@ -41,7 +41,3 @@ async function getRankingsByStickerId(connection, stickerId) {
 module.exports = {
     getRankingsByStickerId,
 };
-
-module.exports = {
-    getRankingsByStickerId
-}

@@ -5,8 +5,8 @@
 
 // addFriendRouter.post('/add', addFriends)
 
-const addFriendController = require('../controller/addFriendController')
+const friendController = require('../controller/friendController')
 
 module.exports = function (app) {
-    app.post('/3out/home/add', addFriendController.add);
+    app.post('/3out/home/add', friendController.addNewFriend);
 }
