@@ -45,5 +45,8 @@ module.exports = function () {
 
     require('../src/route/testRoute')(app);
 
+    //add here
+    require('../src/route/friendRoute')(app);
+
     return app;
 };
