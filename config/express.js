@@ -54,9 +54,11 @@ module.exports = function () {
     })
 
     // 라우트 설정
-    require('../src/route/testRoute')(app)
-    require('../src/route/rankingRoute')(app)
-    require('../src/route/friendRoute')(app)
+    require('../src/route/testRoute')(app);
+    require('../src/route/rankingRoute')(app);
+    require('../src/route/friendRoute')(app);
+    require('../src/route/testRoute')(app);
+    require('../src/route/userRoute')(app);
 
     // 404 에러 핸들러
     app.use((req, res, next) => {
@@ -68,9 +70,6 @@ module.exports = function () {
         console.error(err.stack)
         res.status(500).send('Something broke!')
     })
-  
-    require('../src/route/testRoute')(app);
-    require('../src/route/userRoute')(app);
 
     return app
 }
