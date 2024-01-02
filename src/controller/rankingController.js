@@ -1,13 +1,13 @@
 const baseResponse = require('../../config/baseResponseStatus')
 const { response, errResponse } = require('../../config/response')
-const rankingService = require('../service/rankingService')
+const rankingProvider = require('../provider/rankingProvider')
 
 exports.rankings = async function (req, res) {
   try {
-    const touchingRankingsResult = await rankingService.getTouchingRankings()
-    const happyRankingsResult = await rankingService.getHappyRankings()
-    const sadRankingsResult = await rankingService.getSadRankings()
-    const disappointingRankingsResult = await rankingService.getDisappointingRankings()
+    const touchingRankingsResult = await rankingProvider.getTouchingRankings(req.user_id, 1);
+    const happyRankingsResult = await rankingProvider.getHappyRankings(req.user_id, 2);
+    const sadRankingsResult = await rankingProvider.getSadRankings(req.user_id, 3);
+    const disappointingRankingsResult = await rankingProvider.getDisappointingRankings(req.user_id, 4);
 
     const allRankingResults = {
       touchingRankings: touchingRankingsResult,
@@ -16,7 +16,7 @@ exports.rankings = async function (req, res) {
       disappointingRankings: disappointingRankingsResult,
     }
 
-    return res.send(response(baseResponse.SUCCESS, allRankingResults))
+    return res.send(response(baseResponse.SUCCESS, allRankingResults));
   } catch (error) {
     // 에러 처리
     return res.send(errResponse(baseResponse.DB_ERROR))
