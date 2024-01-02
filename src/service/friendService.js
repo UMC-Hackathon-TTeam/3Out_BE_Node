@@ -8,7 +8,7 @@ exports.addFriend = async function (nickname, relation, favor) {
     const connection = await pool.getConnection(async (conn) => conn)
 
     const newFriendParams = [nickname, relation, favor]
-    const addFriendResult = await userDao.addFriend(
+    const addFriendResult = await friendDao.addFriend(
       connection,
       newFriendParams
     )
