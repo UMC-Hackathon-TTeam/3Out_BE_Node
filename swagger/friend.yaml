@@ -19,10 +19,6 @@ paths:
                 type: string
                 description: 나와 친구와의 관계
                 example: ISFJ 친구
-              favor:
-                type: int
-                description: 친밀도
-                example: 80
       responses:
         '200':
           description: 친구 추가 성공
