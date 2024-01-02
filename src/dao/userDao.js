@@ -1,5 +1,5 @@
 async function insertNewUser(connection, newUserParams) {
-    const insertNewUserQuery = `insert into user (email, password, nickname, promise) values (?, ?, ?, ?);`;
+    const insertNewUserQuery = `insert into user (email, password, nickname, promise, image) values (?, ?, ?, ?, ?);`;
     return await connection.query(insertNewUserQuery, newUserParams);
 }
 
@@ -27,7 +27,7 @@ async function findRefreshTokenById(connection, userId) {
 }
 
 async function findUserProfileById(connection, userId) {
-    const findUserProfileQuery = `select nickname, promise from user where id = ?;`
+    const findUserProfileQuery = `select nickname, promise, image from user where id = ?;`
     const userRow = await connection.query(findUserProfileQuery, userId)
     return userRow[0];
 }
