@@ -10,7 +10,7 @@ async function getWarningFriendList(connection, userId) {
              WHERE user_id = ?
              GROUP BY friend_id
            ) AS subquery
-      WHERE ratio >= 0.6
+      WHERE ratio >= 60
     ) AS selected_friends ON f.id = selected_friends.friend_id;
     `
   return await connection.query(getWarningFriendListQuery, userId);
