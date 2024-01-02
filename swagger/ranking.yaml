@@ -1,0 +1,33 @@
+paths:
+  # 랭킹 조회
+  /3out/home/rankings:
+    post:
+      tags:
+        - Friend
+      summary: 친구 랭킹 조회
+      parameters:
+        - name: rankings
+          in: body
+          required: true
+          schema:
+            properties:
+              sticker_id:
+                type: int
+                description: 스티커 식별자
+                example: 1
+
+      responses:
+        '200':
+          description: 친구 랭킹 조회 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"
