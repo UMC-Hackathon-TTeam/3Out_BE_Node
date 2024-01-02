@@ -15,3 +15,10 @@ exports.getRefreshToken = async function (userId) {
     connection.release();
     return findRefreshTokenResult[0];
 }
+
+exports.getProfile = async function (userId) {
+    const connection = await pool.getConnection(async (conn) => conn)
+    const userProfileResult = await userDao.findUserProfileById(connection, userId);
+    connection.release()
+    return userProfileResult[0]
+}

@@ -26,10 +26,17 @@ async function findRefreshTokenById(connection, userId) {
     return userRow[0];
 }
 
+async function findUserProfileById(connection, userId) {
+    const findUserProfileQuery = `select nickname, promise from user where id = ?;`
+    const userRow = await connection.query(findUserProfileQuery, userId)
+    return userRow[0];
+}
+
 module.exports = {
     insertNewUser,
     findUserByIdPwd,
     updateRefreshToken,
     findUserById,
     findRefreshTokenById,
-};
+    findUserProfileById,
+}
