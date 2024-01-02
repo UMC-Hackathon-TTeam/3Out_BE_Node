@@ -6,7 +6,7 @@ const userService = require("../service/userService");
 const userProvider = require("../provider/userProvider");
 
 exports.signUp = async function (req, res) {
-    const {email, password, name, nickname, promise} = req.body;
+    const {email, password, nickname, promise} = req.body;
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
