@@ -11,7 +11,7 @@ exports.signUp = async function (req, res) {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
-    const signUpResult = await userService.insertNewUser(email, hash, name, nickname, promise);
+    const signUpResult = await userService.insertNewUser(email, hash, nickname, promise);
 
     return res.send(signUpResult);
 };
