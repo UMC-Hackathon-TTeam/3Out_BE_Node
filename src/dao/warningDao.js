@@ -1,6 +1,6 @@
 async function getWarningFriendList(connection, userId) {
   const getWarningFriendListQuery = `
-    SELECT f.id, f.nickname, selected_friends.ratio
+    SELECT f.id, f.nickname, f.image, selected_friends.ratio
     FROM friend f
            JOIN (
       SELECT friend_id, ratio
@@ -23,7 +23,7 @@ async function addWarningComment(connection, warningCommentParams) {
 
 async function findFriendDetail(connection, params) {
   const addWarningCommentQuery = `
-    SELECT f.id, f.nickname, f.relation, selected_friends.ratio, selected_friends.sticker3, selected_friends.sticker4
+    SELECT f.id, f.nickname, f.relation, f.image, selected_friends.ratio, selected_friends.sticker3, selected_friends.sticker4
     FROM friend f
     JOIN (
       SELECT friend_id, ratio, sticker3, sticker4
