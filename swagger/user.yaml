@@ -112,7 +112,7 @@ paths:
   /3out/refresh:
     post:
       security:
-        - BearerAuth: []
+        - jwt: []
       tags:
         - User
       summary: rtk 재발급
@@ -151,3 +151,41 @@ paths:
                   "accessToken": "asdgads.adgad.dsgads",
                   "refreshToken": "asdfad.asdsfa.dfadf"
                 }
+
+  #프로필
+  /3out/profile:
+    get:
+      security:
+        - jwt: [ ]
+      tags:
+        - Profile
+      summary: 유저 프로필 조회
+      responses:
+        '200':
+          description: 유저 프로필 조회 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "성공"
+              result:
+                type: object
+                example: {
+                  "nickname": "umc",
+                  "promise": "상냥한 친구가 되겠다."
+                }
+
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="

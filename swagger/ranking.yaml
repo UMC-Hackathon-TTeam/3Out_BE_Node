@@ -3,7 +3,7 @@ paths:
   /3out/home/rankings:
     get:
       security:
-        - BearerAuth: [ ]
+        - jwt: [ ]
       tags:
         - Ranking
       summary: 친구 랭킹 조회
@@ -22,3 +22,10 @@ paths:
               message:
                 type: string
                 example: "success"
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: Bearer JWT token
+    pattern: "^Bearer [a-zA-Z0-9-._~+/]+="
