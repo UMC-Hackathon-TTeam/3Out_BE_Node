@@ -68,6 +68,9 @@ module.exports = function () {
         console.error(err.stack)
         res.status(500).send('Something broke!')
     })
+  
+    require('../src/route/testRoute')(app);
+    require('../src/route/userRoute')(app);
 
     return app
 }
