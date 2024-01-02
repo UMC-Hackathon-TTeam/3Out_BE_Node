@@ -1,12 +1,12 @@
 // index.js
-import { specs } from './config/swagger.config.js'
-import SwaggerUi from 'swagger-ui-express'
+// import { specs } from './config/swagger.config.js'
+// import SwaggerUi from 'swagger-ui-express'
+// // import { rankingRouter } from './src/route/rankingRoute.js'
 
 // (...)
-app.use('/user', userRouter)
+// app.use('/home', rankingRouter)
+// app.use('/home', addFriendRouter)
 
-// swagger
-app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs))
 
 const express = require('./config/express')
 const port = 3000
