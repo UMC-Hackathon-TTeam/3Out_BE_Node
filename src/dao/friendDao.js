@@ -4,7 +4,7 @@ async function addFriend(connection, newFriendParams) {
 }
 
 async function getFriendsList(connection, id) {
-    const getFriendsInfoSQL = `SELECT id, nickname, relation FROM friend WHERE user_id = ?;`;
+    const getFriendsInfoSQL = `SELECT id, nickname, relation, image FROM friend WHERE user_id = ?;`;
     return await connection.query(getFriendsInfoSQL, id);
 }
 
