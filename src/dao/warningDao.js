@@ -8,10 +8,15 @@ async function getWarningFriendList(connection) {
         ) AS subquery
         WHERE sticker4_ratio >= 0.6;
     `
-
   return await connection.query(getWarningFriendListQuery)
 }
 
+async function addWarningComment(connection, warningCommentParams) {
+  const addWarningCommentQuery = `INSERT INTO WARNING (friend_id, comment) values (?, ?)`
+  return await connection.query(addWarningCommentQuery, warningCommentParams)
+}
+
 module.exports = {
-  getWarningFriendList
+  getWarningFriendList,
+  addWarningComment
 }

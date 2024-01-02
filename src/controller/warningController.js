@@ -5,21 +5,19 @@ const warningService = require('../service/warningService')
 exports.warningFriendList = async function (req, res) {
   try {
     const warningFriendListResult = await warningService.getWarningFriendList()
-
     return res.send(response(baseResponse.SUCCESS, warningFriendListResult))
   } catch (error) {
-    // 에러 처리
     return res.send(errResponse(baseResponse.DB_ERROR))
   }
 }
 
-exports.warningFriendList = async function (req, res) {
-  try {
-    const warningCommentResult = await warningService.warningComment()
+exports.warningFriendComment = async function (req, res) {
+  const { comment } = req.body
 
+  try {
+    const warningCommentResult = await warningService.addWarningComment(comment)
     return res.send(response(baseResponse.SUCCESS, warningCommentResult))
   } catch (error) {
-    // 에러 처리
     return res.send(errResponse(baseResponse.DB_ERROR))
   }
 }

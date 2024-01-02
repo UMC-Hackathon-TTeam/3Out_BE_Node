@@ -6,7 +6,7 @@ paths:
         - Warning
       summary: 경고 친구 조회
       parameters:
-        - name: warning
+        - name: warningList
           in: body
           required: true
           schema:
@@ -15,6 +15,43 @@ paths:
       responses:
         '200':
           description: 경고 친구 조회 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success"
+
+  # 경고 친구 코멘트 작성
+  /3out/warning/{friend-id}:
+    post:
+      tags:
+        - Warning
+      summary: 경고 친구 코멘트 작성
+      parameters:
+        - name: warningComment
+          in: body
+          required: true
+          schema:
+            properties:
+              friend_id:
+                type: int
+                description: 친구 식별자
+                example: 7
+              comment:
+                type: string
+                description: 경고 친구 코멘트
+                example: 한달동안 나를 이렇게 스트레스 받게 하다니!
+
+      responses:
+        '200':
+          description: 경고 친구 코멘트 작성 성공
           schema:
             type: object
             properties:
