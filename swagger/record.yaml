@@ -1,7 +1,9 @@
 #스티커별 기록 내용 가져오기
 paths:
-  /3out/home/{friendId}/{stickerId}:
+  /3out/record:
     get:
+      security:
+        - BearerAuth: [ ]
       tags:
         - Record
       summary: 스티커별 기록 내용 가져오기
@@ -15,15 +17,10 @@ paths:
           in: query
           required: true
           schema:
-            type: integer
-        - name: userId
-          in: query
-          required: true
-          schema:
-            type: integer
+          type: integer
       responses:
         '200':
-          description: 특정 친구에게 감정 기록하기 성공
+          description: 특정 친구에게 감정 가져오기 성공
           schema:
             type: object
             properties:
@@ -35,4 +32,4 @@ paths:
                 example: 200
               message:
                 type: string
-                example: "success"
+                example: "성공"

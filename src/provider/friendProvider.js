@@ -3,12 +3,11 @@ const friendDAO = require("../dao/friendDao");
 const baseResponse = require("../../config/baseResponseStatus");
 const {response, errResponse} = require("../../config/response");
 
-exports.getFriendsInfo = async function (user_id) {
+exports.getFriendsList = async function (user_id) {
     try {
         const connection = await pool.getConnection(async (conn) => conn);
 
-        const id = user_id;
-        const getFriendsInfoResult = await friendDAO.getFriendsInfo(connection, id);
+        const getFriendsInfoResult = await friendDAO.getFriendsList(connection, user_id);
         console.log(getFriendsInfoResult[0]);
         connection.release();
 
