@@ -1,41 +1,50 @@
-async function getRankingsByStickerId(connection, stickerId) {
+async function getRankingsByStickerId(connection, userId, stickerId) {
     let getRankingsQuery = '';
 
     if (stickerId === 1) {
         getRankingsQuery = `
-            SELECT friend_id, COUNT(*) AS sticker_count
-            FROM friend_sticker
-            WHERE sticker_id = 1
-            GROUP BY friend_id
-            ORDER BY sticker_count DESC;
+            SELECT fs.friend_id, f.nickname, COUNT(*) AS sticker_count
+            FROM friend_sticker fs
+            JOIN friend f ON fs.friend_id = f.id
+            WHERE fs.sticker_id = 1 AND fs.user_id = ?
+            GROUP BY fs.friend_id, f.nickname
+            ORDER BY sticker_count DESC
+            LIMIT 3;
         `;
     } else if (stickerId === 2) {
         getRankingsQuery = `
-            SELECT friend_id, COUNT(*) AS sticker_count
-            FROM friend_sticker
-            WHERE sticker_id = 2
-            GROUP BY friend_id
-            ORDER BY sticker_count DESC;
+            SELECT fs.friend_id, f.nickname, COUNT(*) AS sticker_count
+            FROM friend_sticker fs
+            JOIN friend f ON fs.friend_id = f.id
+            WHERE fs.sticker_id = 2 AND fs.user_id = ?
+            GROUP BY fs.friend_id, f.nickname
+            ORDER BY sticker_count DESC
+            LIMIT 3;
         `;
     } else if (stickerId === 3) {
         getRankingsQuery = `
-            SELECT friend_id, COUNT(*) AS sticker_count
-            FROM friend_sticker
-            WHERE sticker_id = 3
-            GROUP BY friend_id
-            ORDER BY sticker_count DESC;
+            SELECT fs.friend_id, f.nickname, COUNT(*) AS sticker_count
+            FROM friend_sticker fs
+            JOIN friend f ON fs.friend_id = f.id
+            WHERE fs.sticker_id = 3 AND fs.user_id = ?
+            GROUP BY fs.friend_id, f.nickname
+            ORDER BY sticker_count DESC
+            LIMIT 3;
         `;
     } else if (stickerId === 4) {
         getRankingsQuery = `
-            SELECT friend_id, COUNT(*) AS sticker_count
-            FROM friend_sticker
-            WHERE sticker_id = 4
-            GROUP BY friend_id
-            ORDER BY sticker_count DESC;
+            SELECT fs.friend_id, f.nickname, COUNT(*) AS sticker_count
+            FROM friend_sticker fs
+            JOIN friend f ON fs.friend_id = f.id
+            WHERE fs.sticker_id = 4 AND fs.user_id = ?
+            GROUP BY fs.friend_id, f.nickname
+            ORDER BY sticker_count DESC
+            LIMIT 3;
         `;
     }
 
-    return await connection.query(getRankingsQuery, [stickerId]);
+    const rankingRow = await connection.query(getRankingsQuery, userId);
+    return rankingRow[0];
 }
 
 module.exports = {
